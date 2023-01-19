@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: vote
+  name: vote
+spec:
+  ports:
+  - name: {{  .Values.vote.service.name  }}
+    nodePort: {{  .Values.vote.service.nodePort  }}
+    port: {{  .Values.vote.service.servicePort  }}
+    protocol: TCP
+    targetPort: {{  .Values.vote.service.targetPort  }}
+  selector:
+    app: vote
+  type: {{  .Values.vote.service.type  }}
+status:
+  loadBalancer: {}

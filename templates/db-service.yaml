@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: db
+  name: db
+spec:
+  ports:
+  - name: {{  .Values.db.service.name  }}
+    port: {{  .Values.db.service.servicePort  }}
+    protocol: TCP
+    targetPort: {{  .Values.db.service.targetPort  }}
+  selector:
+    app: db
+  type: {{  .Values.db.service.type  }}
+status:
+  loadBalancer: {}

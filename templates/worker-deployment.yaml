@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: worker
+  name: worker
+spec:
+  replicas: {{  .Values.worker.replicaCount  }}
+  selector:
+    matchLabels:
+      app: worker
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: worker
+    spec:
+      containers:
+      - image: {{  .Values.worker.image.repository  }}/{{  .Values.worker.image.tag  }}
+        imagePullPolicy: {{  .Values.worker.image.pullPolicy  }}
+        name: worker
+        resources: {}
+status: {}

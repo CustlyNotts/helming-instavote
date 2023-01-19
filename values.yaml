@@ -1,0 +1,60 @@
+# Database
+db:
+  replicaCount: 1
+  image:
+    repository: postgres
+    tag: 9.4
+  service:
+    name: db-svc
+    type: ClusterIP
+    servicePort: 5432
+    targetPort: 5432
+
+# Redis
+redis:
+  replicaCount: 1
+  image:
+    repository: redis
+    tag: alpine
+    pullPolicy: IfNotPresent
+  service:
+    name: redis-svc
+    type: ClusterIP
+    servicePort: 6379
+    targetPort: 6379
+
+# Result App
+result:
+  replicaCount: 1
+  image:
+    repository: schoolofdevops
+    tag: vote-result
+    pullPolicy: IfNotPresent
+  service:
+    name: result-svc
+    type: NodePort
+    servicePort: 80
+    targetPort: 80
+    nodePort: 30400
+
+# Vote App
+vote:
+  replicaCount: 1
+  image:
+    repository: schoolofdevops 
+    tag: vote:v4
+    pullPolicy: IfNotPresent
+  service:
+    name: vote-svc
+    type: NodePort
+    servicePort: 80
+    targetPort: 80
+    nodePort: 30300
+
+# Worker App
+worker:
+  replicaCount: 1
+  image:
+    repository: schoolofdevops
+    tag: worker:latest
+    pullPolicy: IfNotPresent
